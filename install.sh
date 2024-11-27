@@ -1,5 +1,3 @@
-sudo true
-
 if [ -e "$HOME/.bashrc" ]; then
 	echo "export PATH=\$PATH:\$HOME/.pikcs/bin" >> ~/.bashrc
 fi
