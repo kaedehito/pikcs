@@ -3,6 +3,7 @@ use crate::path::build_path;
 use crate::{git, path};
 use crate::{read_build::read_to_build, read_package_list::read_to_package};
 use colored::*;
+use std::io::Read;
 use std::path::Path;
 use std::process::{Command, Stdio};
 use std::{env, fs};
@@ -89,15 +90,34 @@ pub fn install(package: &str) {
             continue;
         }
 
-        let _status = Command::new(sc.first().unwrap())
+        
+
+        let mut chiled = Command::new(sc.first().unwrap())
             .args(&sc[1..])
             .stdout(Stdio::null())
-            .status()
+            .stderr(Stdio::piped())
+            .spawn()
             .unwrap_or_else(|e| {
                 eprintln!("{script}:");
                 eprintln!("{}: {e}", "Error".red().bold());
                 std::process::exit(1);
             });
+
+
+        let mut err = String::new();
+        if let Some(mut s) = chiled.stderr.take(){
+            s.read_to_string(&mut err).unwrap();
+        }
+
+        let wait = chiled.wait().unwrap_or_else(|e| {
+            eprintln!("{}: {e}", "Error".red().bold());
+            std::process::exit(1);
+        });
+        if !wait.success(){
+            eprintln!("{}: {err}", "Error".red().bold());
+            std::process::exit(1);
+        }
+
     }
 
     // msg: installing {}...
