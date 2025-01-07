@@ -1,27 +1,27 @@
-Pikcs: A Lightweight Package Manager for Developers
+# Pikcs: A Lightweight Package Manager for Developers
 
 Pikcs is a simple and efficient package manager designed to allow developers to share and install packages hosted on GitHub with minimal setup. It aims to empower individual developers by streamlining the process of distributing their tools and libraries.
 
 
 ---
 
-Features
+## Features
 
-Customizable: Install packages from your own GitHub repositories.
+- Customizable: Install packages from your own GitHub repositories.
 
-Easy Integration: Just add a packagelist.json to your repository.
+- Easy Integration: Just add a packagelist.json to your repository.
 
-Dependency Management: Specify required tools and dependencies.
+- Dependency Management: Specify required tools and dependencies.
 
-Cross-Language Support: Works with Rust, C, and more.
+- Cross-Language Support: Works with Rust, C, and more.
 
-Flexible Build System: Define build, install, and removal steps using .build files.
+- Flexible Build System: Define build, install, and removal steps using .build files.
 
 
 
 ---
 
-How It Works
+## How It Works
 
 1. Create a packagelist repository in your GitHub account.
 
@@ -39,8 +39,9 @@ How It Works
 
 ---
 
-Example: packagelist.json
+### Example: packagelist.json
 
+```json
 {
   "version": 1,
   "user": "kaedehito",
@@ -66,11 +67,12 @@ Example: packagelist.json
   ]
 }
 
+```
 
----
 
-Example: .build
+### Example: .build
 
+```json
 {
   "build": [
     "cargo build --release"
@@ -83,13 +85,13 @@ Example: .build
     "rm -rf ~/.config/rfoc/"
   ]
 }
-
+```
 
 ---
 
-Getting Started
+# Getting Started
 
-Installation
+## Installation
 
 Clone the Pikcs repository and build it:
 
@@ -97,39 +99,44 @@ git clone https://github.com/kaedehito/pikcs
 cd pikcs
 ./install.sh
 
-Usage
+: Usage
 
 Install a package:
 
+```
 pikcs install <package_name>
+```
 
 Remove a package:
 
+```
 pikcs remove <package_name>
+```
 
 Update the package list:
 
+```
 pikcs update
-
+```
 
 
 ---
 
-Contributing
+## Contributing
 
 We welcome contributions to Pikcs! If you have ideas for improvement, feel free to submit issues or pull requests.
 
 
 ---
 
-License
+## License
 
 Pikcs is licensed under the MIT License. See the LICENSE file for details.
 
 
 ---
 
-Contact
+## Contact
 
 If you have any questions or suggestions, please contact kaedehito.
 
