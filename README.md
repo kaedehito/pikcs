@@ -1,49 +1,135 @@
-# pikcs
-A package manager that builds and installs programs from github repositories
+Pikcs: A Lightweight Package Manager for Developers
+
+Pikcs is a simple and efficient package manager designed to allow developers to share and install packages hosted on GitHub with minimal setup. It aims to empower individual developers by streamlining the process of distributing their tools and libraries.
 
 
-# How to install
-```sh
+---
+
+Features
+
+Customizable: Install packages from your own GitHub repositories.
+
+Easy Integration: Just add a packagelist.json to your repository.
+
+Dependency Management: Specify required tools and dependencies.
+
+Cross-Language Support: Works with Rust, C, and more.
+
+Flexible Build System: Define build, install, and removal steps using .build files.
+
+
+
+---
+
+How It Works
+
+1. Create a packagelist repository in your GitHub account.
+
+
+2. Add a packagelist.json file with the packages you want to share.
+
+
+3. Each package repository must include a .build file to define build, install, and removal instructions.
+
+
+4. Use Pikcs to install, manage, and remove packages easily.
+
+
+
+
+---
+
+Example: packagelist.json
+
+{
+  "version": 1,
+  "user": "kaedehito",
+  "list": [
+    {
+      "name": "cocoa",
+      "url": "https://github.com/kaedehito/cocoa",
+      "license": "MIT",
+      "language": "Rust",
+      "desc": "Modern shell made of rust",
+      "dependencies": ["cargo", "rustc"],
+      "version": "1.0.0"
+    },
+    {
+      "name": "qase",
+      "url": "https://github.com/kaedehito/qase",
+      "license": "MIT",
+      "language": "C",
+      "desc": "Quick Audio Stream Emulator",
+      "dependencies": ["gcc", "cmake", "pkg-config"],
+      "version": "1.0.0"
+    }
+  ]
+}
+
+
+---
+
+Example: .build
+
+{
+  "build": [
+    "cargo build --release"
+  ],
+  "install": [
+    "cargo run --release",
+    "mv target/release/rfoc ."
+  ],
+  "remove": [
+    "rm -rf ~/.config/rfoc/"
+  ]
+}
+
+
+---
+
+Getting Started
+
+Installation
+
+Clone the Pikcs repository and build it:
+
 git clone https://github.com/kaedehito/pikcs
 cd pikcs
 ./install.sh
-```
-This script creates a .pikcs directory in your home directory and adds a path to pikcs to .bashrc and .zshrc
 
-# How to use 
+Usage
 
-## update the packagelist
-```sh
-pikcs update <username>
-```
-Clone `https://github.com/<username>/packagelist` and update the package list
+Install a package:
 
-If there are no arguments, clone the previously cloned package list repository again
+pikcs install <package_name>
 
-## install the package
-```sh
-pikcs install <package>
-```
-Install the specified package. 
-Checks if the package specified in packagelist exists, and if so, clones the repository, builds, and installs it. If it does not exist, output an error message and exit.
+Remove a package:
 
-## remove the package
-```sh
-pikcs remove <package>
-```
-removes the specified package
+pikcs remove <package_name>
 
-If the package was installed, this program runs the uninstall script and removes the package's executable file. 
-If it does not exist, output an error message and exit
+Update the package list:
+
+pikcs update
 
 
-## search the package
-```sh
-pikcs search <package>
-```
 
-Checks if the specified package exists 
+---
 
-If it does not exist, output an error message and exit.
+Contributing
 
-If it exists, print the package information and exit
+We welcome contributions to Pikcs! If you have ideas for improvement, feel free to submit issues or pull requests.
+
+
+---
+
+License
+
+Pikcs is licensed under the MIT License. See the LICENSE file for details.
+
+
+---
+
+Contact
+
+If you have any questions or suggestions, please contact kaedehito.
+
