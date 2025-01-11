@@ -94,12 +94,13 @@ Pikcs is a simple and efficient package manager designed to allow developers to 
 ## Installation
 
 Clone the Pikcs repository and build it:
-
+```
 git clone https://github.com/kaedehito/pikcs
 cd pikcs
 ./install.sh
+```
 
-: Usage
+## Usage
 
 Install a package:
 
